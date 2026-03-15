@@ -43,7 +43,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--char);font-fam
   align-items:center;
   min-height:100%;
   justify-content:center;
-  padding:8px 0 16px;
+  padding:8px 0 24px;
+}
+/* On mobile: never center-justify — always start from top so content doesn't go above fold */
+@media(max-width:768px){
+  .slide-inner{justify-content:flex-start;padding-top:4px;}
 }
 
 /* backgrounds */
@@ -814,6 +818,8 @@ function go(i){
   cur=i;
   slides[cur].scrollTop=0;
   slides[cur].classList.add('active');
+  // Double-reset for iOS Safari scroll persistence
+  setTimeout(()=>{ slides[cur].scrollTop=0; },50);
   ctr.textContent=String(cur+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');
   prog.style.width=((cur+1)/N*100)+'%';
   theme(cur);
@@ -842,6 +848,7 @@ document.addEventListener('touchend',e=>{
 },{passive:true});
 
 slides[0].classList.add('active');
+slides[0].scrollTop=0;
 theme(0);
 </script>
 </body>
