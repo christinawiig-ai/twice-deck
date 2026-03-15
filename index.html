@@ -841,6 +841,7 @@ document.addEventListener('touchend',e=>{
   if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>44){dx<0?next():prev();}
 },{passive:true});
 
+slides[0].classList.add('active');
 theme(0);
 </script>
 </body>
