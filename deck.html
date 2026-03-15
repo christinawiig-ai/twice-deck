@@ -179,25 +179,25 @@ h3{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.5vw,26px);font-
 
 /* ── PHOTO PLACEHOLDER ── */
 .photo-circle{
-  width:64px;height:64px;border-radius:50%;
+  width:96px;height:96px;border-radius:50%;
   background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.15);
   display:flex;align-items:center;justify-content:center;
   font-size:9px;letter-spacing:1px;text-transform:uppercase;
   color:rgba(255,255,255,.3);
-  margin-bottom:12px;
-  overflow:hidden;
+  margin-bottom:14px;
+  overflow:hidden;flex-shrink:0;
 }
 .photo-circle img{width:100%;height:100%;object-fit:cover;}
 .photo-circle-l{
-  width:64px;height:64px;border-radius:50%;
+  width:110px;height:110px;border-radius:50%;
   background:rgba(26,25,23,.06);
-  border:1px solid rgba(26,25,23,.12);
+  border:2px solid rgba(26,25,23,.1);
   display:flex;align-items:center;justify-content:center;
   font-size:9px;letter-spacing:1px;text-transform:uppercase;
-  color:rgba(26,25,23,.3);margin-bottom:10px;overflow:hidden;
+  color:rgba(26,25,23,.3);margin-bottom:12px;overflow:hidden;flex-shrink:0;
 }
-.photo-circle-l img{width:100%;height:100%;object-fit:cover;}
+.photo-circle-l img{width:100%;height:100%;object-fit:cover;object-position:center top;}
 
 /* ── PRODUCT ILLUSTRATION (CSS) ── */
 .product-wrap{
@@ -363,11 +363,11 @@ h3{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.5vw,26px);font-
 <!-- 1 COVER -->
 <div class="slide bc" data-nav="ln">
   <div class="slide-inner tc">
-    <div class="an ey ey-l mb8">Seed Round &nbsp;·&nbsp; €2.5M &nbsp;·&nbsp; Oslo, 2026</div>
+    <div class="an ey ey-l mb8" style="opacity:.65;">Seed Round &nbsp;·&nbsp; €2.5M &nbsp;·&nbsp; Oslo, 2026</div>
     <div class="an"><h1 class="cd" style="letter-spacing:10px;">TWICE</h1></div>
     <div class="an"><div class="div" style="background:var(--plum);margin:20px auto;"></div></div>
-    <div class="an"><p class="ic cm" style="letter-spacing:.3px;">Two minutes. Twice daily.<br>Finally worth it.</p></div>
-    <div class="an mt24"><span class="ey ey-l" style="opacity:.2;">Premium Personal Wellness</span></div>
+    <div class="an"><p class="ic" style="letter-spacing:.3px;color:#3A3632;font-size:clamp(16px,2.2vw,22px);">Two minutes. Twice daily.<br>Finally worth it.</p></div>
+    <div class="an mt24"><span class="ey ey-l" style="opacity:.45;">Premium Personal Wellness</span></div>
   </div>
 </div>
 
