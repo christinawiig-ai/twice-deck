@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TWICE — Investor Presentation 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #F5F2ED;
+  --warm-white: #FDFCFB;
+  --charcoal: #161614;
+  --charcoal-soft: #1E1D1B;
+  --plum: #6B3D6B;
+  --plum-light: #C49AC4;
+  --plum-pale: rgba(107,61,107,0.08);
+  --sage: #8FA887;
+  --sage-pale: rgba(143,168,135,0.12);
+  --gold: #C4A882;
+  --stone: #9E9186;
+  --text-dark: #1A1917;
+  --text-mid: #5C5750;
+  --text-light: #9E9186;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--charcoal);
+}
+
+/* ─── LAYOUT ─── */
+.deck { width: 100vw; height: 100vh; position: relative; }
+
+.slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 90px 10vw 80px;
+  opacity: 0; pointer-events: none;
+  transform: translateY(24px);
+  filter: blur(6px);
+  transition: opacity .65s ease, transform .65s cubic-bezier(.4,0,.2,1), filter .65s ease;
+}
+.slide.active {
+  opacity: 1; pointer-events: all;
+  transform: translateY(0); filter: blur(0);
+}
+.slide.exit {
+  opacity: 0; transform: translateY(-24px); filter: blur(6px);
+}
+
+/* BACKGROUNDS */
+.bg-cream  { background: var(--cream); }
+.bg-warm   { background: var(--warm-white); }
+.bg-dark   { background: var(--charcoal); }
+.bg-dark-s { background: var(--charcoal-soft); }
+.bg-plum   { background: var(--plum); }
+
+/* ─── NAVIGATION ─── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 48px; z-index: 200; pointer-events: none;
+}
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; letter-spacing: 5px; text-transform: uppercase;
+  font-weight: 400; opacity: .35;
+  transition: color .4s;
+}
+.nav-counter {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; letter-spacing: 2px; opacity: .3;
+  transition: color .4s;
+}
+.light-nav .nav-brand, .light-nav .nav-counter { color: var(--text-dark); }
+.dark-nav  .nav-brand, .dark-nav  .nav-counter  { color: var(--warm-white); }
+
+.progress-wrap {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 1.5px; z-index: 200;
+  background: rgba(107,61,107,.15);
+}
+.progress-bar {
+  height: 100%; background: var(--plum);
+  transition: width .6s cubic-bezier(.4,0,.2,1);
+}
+
+.arrows {
+  position: fixed; bottom: 28px; right: 44px;
+  display: flex; gap: 10px; z-index: 200;
+}
+.arrow {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid currentColor; background: none;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 16px; transition: opacity .2s, transform .2s;
+  opacity: .3;
+}
+.arrow:hover { opacity: 1; transform: scale(1.05); }
+.light-arr .arrow { color: var(--text-dark); }
+.dark-arr  .arrow { color: var(--warm-white); }
+
+/* ─── TYPOGRAPHY ─── */
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  font-weight: 500; margin-bottom: 28px; opacity: .4;
+}
+.eyebrow-dark { color: var(--text-dark); }
+.eyebrow-light { color: var(--warm-white); }
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(64px, 9vw, 128px);
+  font-weight: 300; line-height: 1;
+  letter-spacing: -2px;
+}
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 4.5vw, 64px);
+  font-weight: 300; line-height: 1.1;
+  letter-spacing: -.5px;
+}
+h2.italic { font-style: italic; }
+h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 400; line-height: 1.3;
+}
+.body {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(13px, 1.3vw, 16px);
+  font-weight: 300; line-height: 1.85;
+  color: inherit;
+}
+.body-sm {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; font-weight: 300;
+  line-height: 1.8; opacity: .6;
+}
+.italic-close {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: clamp(15px, 1.6vw, 20px);
+  line-height: 1.6;
+}
+
+.text-dark { color: var(--text-dark); }
+.text-mid  { color: var(--text-mid); }
+.text-light { color: var(--warm-white); }
+.text-plum  { color: var(--plum); }
+.text-plum-light { color: var(--plum-light); }
+.text-stone { color: var(--stone); }
+.text-sage  { color: var(--sage); }
+
+/* ─── DIVIDER ─── */
+.divider {
+  width: 32px; height: 1px;
+  background: currentColor; opacity: .2;
+  margin: 28px auto;
+}
+.divider-left { margin: 20px 0; }
+
+/* ─── GRID ─── */
+.row { display: flex; gap: 24px; width: 100%; }
+.col { flex: 1; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 100%; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; }
+
+/* ─── CARDS ─── */
+.card {
+  padding: 28px 32px; border-radius: 3px;
+  transition: transform .2s;
+}
+.card-outline-dark {
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.03);
+}
+.card-outline-light {
+  border: 1px solid rgba(26,25,23,.08);
+  background: rgba(255,255,255,.6);
+}
+.card-sage {
+  border: 1px solid rgba(143,168,135,.3);
+  background: rgba(143,168,135,.07);
+}
+.card-plum {
+  border: 1px solid rgba(107,61,107,.35);
+  background: rgba(107,61,107,.08);
+}
+.card-plum-inv {
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.08);
+}
+.card-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; letter-spacing: 3px;
+  text-transform: uppercase; opacity: .45;
+  margin-bottom: 10px; display: block;
+}
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: 400; line-height: 1.2;
+  margin-bottom: 10px;
+}
+.card-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px; font-weight: 300;
+  line-height: 1.75; opacity: .7;
+}
+.card-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: 1.5px;
+  padding: 4px 10px; border-radius: 20px;
+  margin-top: 14px;
+  border: 1px solid currentColor; opacity: .5;
+}
+
+/* ─── STAT ─── */
+.stat-row { display: flex; gap: 56px; align-items: flex-start; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 300; line-height: 1;
+}
+.stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 300;
+  opacity: .5; margin-top: 8px; line-height: 1.5;
+}
+
+/* ─── TABLE ─── */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table thead th {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  font-weight: 500; opacity: .35; padding: 0 0 16px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  text-align: left;
+}
+.data-table tbody td {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 300;
+  padding: 16px 0; opacity: .8;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  line-height: 1.5; vertical-align: top;
+}
+.data-table tbody tr:last-child td { border-bottom: none; }
+.td-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px !important; font-weight: 400 !important;
+  white-space: nowrap; padding-right: 32px !important;
+}
+.td-note { opacity: .4 !important; font-size: 11.5px !important; }
+
+/* ─── BULLET LIST ─── */
+.bullet-list { list-style: none; width: 100%; }
+.bullet-list li {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(13px, 1.4vw, 15px);
+  font-weight: 300; line-height: 1.8;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  display: flex; gap: 20px; align-items: flex-start;
+}
+.bullet-list li:last-child { border-bottom: none; }
+.bullet-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; letter-spacing: 2px;
+  opacity: .3; margin-top: 4px; flex-shrink: 0;
+  color: var(--warm-white);
+}
+.bullet-text { opacity: .82; color: var(--warm-white); }
+.bullet-text strong { opacity: 1; font-weight: 500; }
+.bullet-text em { font-style: italic; opacity: 1; }
+
+/* ─── SCRIPT CARD ─── */
+.script-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 3px; padding: 36px 44px;
+  width: 100%;
+}
+.script-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  opacity: .3; margin-bottom: 20px; display: block;
+}
+.script-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px; font-weight: 300;
+  line-height: 2; opacity: .8; color: var(--warm-white);
+}
+.script-text em { font-style: italic; opacity: .6; }
+.script-super {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600; font-size: 14px;
+  letter-spacing: 1px; opacity: 1;
+}
+
+/* ─── FOOTNOTE ─── */
+.footnote {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px; font-weight: 300;
+  font-style: italic; opacity: .3;
+  text-align: center; margin-top: 28px;
+  line-height: 1.6;
+}
+
+/* ─── PILL BADGE ─── */
+.badge {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 10px;
+  border: 1px solid var(--plum-light);
+  color: var(--plum-light);
+  margin-left: 8px; vertical-align: middle;
+}
+
+/* ─── PERSONA CARD ─── */
+.persona-card {
+  border: 1px solid rgba(26,25,23,.1);
+  background: rgba(255,255,255,.55);
+  border-radius: 3px; padding: 28px 28px 24px;
+}
+.persona-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--stone); margin-bottom: 8px;
+}
+.persona-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400; color: var(--text-dark);
+  margin-bottom: 4px;
+}
+.persona-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 14px;
+  color: var(--text-mid); margin-bottom: 12px;
+  line-height: 1.5;
+}
+.persona-detail {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px; font-weight: 300;
+  line-height: 1.75; color: var(--text-mid);
+  margin-bottom: 14px;
+}
+.persona-divider { width: 100%; height: 1px; background: rgba(26,25,23,.08); margin: 14px 0; }
+.persona-angle {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 300;
+  line-height: 1.7; color: var(--plum);
+}
+.persona-angle strong { font-weight: 500; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.slide.active .anim { animation: fadeUp .6s ease both; }
+.slide.active .anim:nth-child(1) { animation-delay: 0s; }
+.slide.active .anim:nth-child(2) { animation-delay: .08s; }
+.slide.active .anim:nth-child(3) { animation-delay: .16s; }
+.slide.active .anim:nth-child(4) { animation-delay: .24s; }
+.slide.active .anim:nth-child(5) { animation-delay: .32s; }
+.slide.active .anim:nth-child(6) { animation-delay: .40s; }
+
+/* ─── SLIDE-SPECIFIC MAX WIDTHS ─── */
+.max-680 { max-width: 680px; width: 100%; }
+.max-760 { max-width: 760px; width: 100%; }
+.max-860 { max-width: 860px; width: 100%; }
+.max-960 { max-width: 960px; width: 100%; }
+.max-1000 { max-width: 1000px; width: 100%; }
+.text-center { text-align: center; }
+.mb-8  { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.mb-40 { margin-bottom: 40px; }
+.mb-48 { margin-bottom: 48px; }
+.mt-8  { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-40 { margin-top: 40px; }
+.full-w { width: 100%; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav dark-nav" id="nav">
+  <span class="nav-brand" id="navBrand">TWICE</span>
+  <span class="nav-counter" id="navCounter">01 / 14</span>
+</nav>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-bar" id="progressBar" style="width:7.14%"></div>
+</div>
+
+<!-- ARROWS -->
+<div class="arrows dark-arr" id="arrows">
+  <button class="arrow" onclick="prev()">←</button>
+  <button class="arrow" onclick="next()">→</button>
+</div>
+
+<div class="deck" id="deck">
+
+<!-- ═══════════════════════════════════
+     SLIDE 1 — COVER
+════════════════════════════════════ -->
+<div class="slide bg-cream active" data-nav="light">
+  <div class="text-center anim" style="margin-bottom:16px;">
+    <span class="eyebrow eyebrow-dark" style="opacity:.35;">Seed Round &nbsp;·&nbsp; €2.5M &nbsp;·&nbsp; Oslo, 2026</span>
+  </div>
+  <div class="anim text-center">
+    <h1 class="text-dark" style="letter-spacing: 12px; font-weight:300;">TWICE</h1>
+  </div>
+  <div class="anim text-center" style="margin: 28px auto;">
+    <div class="divider" style="background:var(--plum); margin:0 auto;"></div>
+  </div>
+  <div class="anim text-center">
+    <p class="italic-close text-mid" style="letter-spacing:.5px; font-size:clamp(15px,1.8vw,22px);">
+      Two minutes. Twice daily. Finally worth it.
+    </p>
+  </div>
+  <div class="anim text-center mt-40">
+    <span class="eyebrow eyebrow-dark" style="opacity:.25; letter-spacing:5px;">Premium Personal Wellness</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 2 — THE PROBLEM
+════════════════════════════════════ -->
+<div class="slide bg-dark" data-nav="dark">
+  <div class="max-800" style="max-width:800px; width:100%;">
+    <div class="anim mb-16">
+      <span class="eyebrow eyebrow-light">The Problem</span>
+    </div>
+    <div class="anim mb-40">
+      <h2 class="text-light" style="font-weight:300; max-width:640px;">
+        The market solved two halves.<br>Nobody connected them.
+      </h2>
+    </div>
+    <ul class="bullet-list anim">
+      <li>
+        <span class="bullet-num">01</span>
+        <span class="bullet-text">Women spend an average of <strong>€847 per year on oral care</strong> and €94 per year on intimate wellness devices — two separate purchase occasions, two guilty line items, and eleven personal care devices competing for bathroom counter space.</span>
+      </li>
+      <li>
+        <span class="bullet-num">02</span>
+        <span class="bullet-text"><strong>68% of women</strong> actively conceal their intimate wellness devices from houseguests. Meanwhile, their electric toothbrush sits in plain sight — on the shelf, judged by nobody.</span>
+      </li>
+      <li>
+        <span class="bullet-num">03</span>
+        <span class="bullet-text">A study in the <em>Journal of Sexual Medicine</em> found that <strong>73.8% of women have never reached orgasm through partnered intercourse alone.</strong> Meanwhile, 99.7% of those same women brush their teeth every day.<br><br>
+        <em style="opacity:1; font-family:'Cormorant Garamond', serif; font-size:1.15em;">We believe these numbers should be related.</em></span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 3 — THE SOLUTION
+════════════════════════════════════ -->
+<div class="slide bg-warm" data-nav="light">
+  <div class="text-center max-760">
+    <div class="anim mb-16">
+      <span class="eyebrow eyebrow-dark">The Solution</span>
+    </div>
+    <div class="anim mb-24">
+      <h2 class="italic text-dark">One handle. Two rituals.<br>No apologies.</h2>
+    </div>
+    <div class="anim">
+      <div class="divider" style="background:var(--plum);"></div>
+    </div>
+    <div class="anim mb-32">
+      <p class="body text-mid" style="max-width:580px; margin:0 auto; text-align:center;">
+        TWICE is a single precision handle with interchangeable Ritual attachments — engineered for the full spectrum of a woman's daily care. Variable-intensity sonic motor. Medical-grade silicone. Whisper-quiet at every setting. IPX7 waterproof. One device, considered for all of it.
+      </p>
+    </div>
+    <div class="anim">
+      <p class="italic-close text-plum" style="opacity:.8;">
+        TWICE does not ask women to choose.<br>We decided they don't have to.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 4 — MARKET
+════════════════════════════════════ -->
+<div class="slide bg-dark" data-nav="dark">
+  <div class="max-960">
+    <div class="anim mb-16">
+      <span class="eyebrow eyebrow-light">Market Opportunity</span>
+    </div>
+    <div class="anim mb-44" style="margin-bottom:44px;">
+      <h2 class="text-light" style="font-weight:300;">€42.9 billion. <span style="opacity:.35;">And growing.</span></h2>
+    </div>
+    <div class="grid-3 anim" style="gap:20px;">
+      <div class="card card-outline-dark">
+        <span class="card-label" style="color:var(--warm-white);">TAM</span>
+        <div class="card-title text-light">€42.9B</div>
+        <p class="card-body" style="color:var(--warm-white);">Sexual wellness ($40B) + premium electric toothbrush ($5.5B). CAGR 8.5–10%. Projected €82B by 2030.</p>
+      </div>
+      <div class="card card-outline-dark">
+        <span class="card-label" style="color:var(--warm-white);">SAM</span>
+        <div class="card-title text-light">€8.3B</div>
+        <p class="card-body" style="color:var(--warm-white);">Women 25–45, Northern & Western Europe + North America, premium personal care buyers.</p>
+      </div>
+      <div class="card card-outline-dark">
+        <span class="card-label" style="color:var(--warm-white);">SOM</span>
+        <div class="card-title text-light">€180M</div>
+        <p class="card-body" style="color:var(--warm-white);">DTC premium channel, Year 1–3 early adopter segment. Conservative.</p>
+      </div>
+    </div>
+    <div class="anim">
+      <p class="footnote" style="color:var(--warm-white);">Market data: Grand View Research, Mordor Intelligence, and a very interesting search history.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 5 — THE PRODUCT
+════════════════════════════════════ -->
+<div class="slide bg-cream" data-nav="light">
+  <div class="max-960">
+    <div class="anim mb-16 text-center">
+      <span class="eyebrow eyebrow-dark">The Product</span>
+    </div>
+    <div class="anim mb-40 text-center">
+      <h2 class="text-dark" style="font-weight:300;">Two heads. One handle.<br>Zero compromises.</h2>
+    </div>
+    <div class="row anim" style="gap:24px;">
+      <div class="card card-sage col">
+        <span class="card-label text-dark">Head 01 &nbsp;·&nbsp; The Morning Ritual</span>
+        <div class="card-title text-dark" style="margin-bottom:14px;">Oral Care</div>
+        <p class="card-body text-mid">Professional-grade sonic. 40,000 micro-movements per minute. ADA accepted. Five cleaning modes. 2-minute smart timer. Dentist-recommended intensity at setting three.</p>
+      </div>
+      <div class="card card-plum col">
+        <span class="card-label text-plum">Head 02 &nbsp;·&nbsp; The Evening Ritual</span>
+        <div class="card-title text-plum" style="margin-bottom:14px;">Personal Wellness</div>
+        <p class="card-body text-mid">Medical-grade platinum silicone. 8 intensity modes. Whisper-quiet at 32dB. Contoured for targeted soft-tissue stimulation. Designed to be used privately, consistently, and without apology. <em>We recommend it nightly.</em></p>
+      </div>
+    </div>
+    <div class="anim mt-24 text-center">
+      <p class="body-sm text-mid">IPX7 waterproof &nbsp;·&nbsp; Magnetic Qi charging &nbsp;·&nbsp; Available in Cream, Slate, Noir</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 6 — THE RITUALS
+════════════════════════════════════ -->
+<div class="slide bg-warm" data-nav="light">
+  <div class="max-1000">
+    <div class="anim mb-16 text-center">
+      <span class="eyebrow eyebrow-dark">Product Line</span>
+    </div>
+    <div class="anim mb-40 text-center">
+      <h2 class="text-dark" style="font-weight:300;">The Rituals</h2>
+    </div>
+    <div class="grid-4 anim" style="gap:16px; align-items:start;">
+      <div class="card card-outline-light">
+        <span class="card-label text-dark">Morning</span>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:17px; color:var(--text-dark); margin-bottom:8px; font-weight:400;">The Morning Ritual</div>
+        <p class="card-body text-mid">Sonic oral care.<br>Non-negotiable.</p>
+        <span class="card-tag text-dark" style="border-color:var(--sage); color:var(--sage);">included</span>
+      </div>
+      <div class="card card-outline-light">
+        <span class="card-label text-dark">Whitening</span>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:17px; color:var(--text-dark); margin-bottom:8px; font-weight:400;">The Polish Ritual</div>
+        <p class="card-body text-mid">Enamel-safe whitening.<br>2–3× weekly.</p>
+        <span class="card-tag text-dark" style="border-color:var(--stone); color:var(--stone);">€29</span>
+      </div>
+      <div class="card card-outline-light">
+        <span class="card-label text-dark">Sensitive</span>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:17px; color:var(--text-dark); margin-bottom:8px; font-weight:400;">The Gentle Ritual</div>
+        <p class="card-body text-mid">For sensitivity.<br>No compromise.</p>
+        <span class="card-tag text-dark" style="border-color:var(--stone); color:var(--stone);">€29</span>
+      </div>
+      <div class="card card-plum">
+        <span class="card-label text-plum">Evening</span>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:17px; color:var(--plum); margin-bottom:8px; font-weight:400;">The Evening Ritual</div>
+        <p class="card-body" style="color:var(--plum); opacity:.8;">Personal. Precise.<br><em>Every night.</em></p>
+        <span class="card-tag" style="border-color:var(--plum); color:var(--plum);">€39</span>
+      </div>
+    </div>
+    <div class="anim mt-32 text-center">
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:var(--plum); opacity:.7; line-height:1.6;">
+        "Your Evening Ritual data stays on your device. Always. We didn't design a way to collect it."<br>
+        <span style="font-family:'Inter',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; opacity:.6;">— TWICE App Privacy Policy</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 7 — BUSINESS MODEL
+════════════════════════════════════ -->
+<div class="slide bg-dark-s" data-nav="dark">
+  <div class="max-860">
+    <div class="anim mb-16">
+      <span class="eyebrow eyebrow-light">Business Model</span>
+    </div>
+    <div class="anim mb-40">
+      <h2 class="text-light" style="font-weight:300;">Hardware + Recurring Revenue</h2>
+    </div>
+    <div class="anim">
+      <table class="data-table full-w">
+        <thead>
+          <tr>
+            <th style="color:var(--warm-white); width:32%;">Product</th>
+            <th style="color:var(--warm-white); width:22%;">Price</th>
+            <th style="color:var(--warm-white);">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--warm-white);">TWICE ONE Device</td>
+            <td class="td-price" style="color:var(--warm-white);">€189</td>
+            <td class="td-note" style="color:var(--warm-white);">Below Oral-B Genius X (€219). Premium but accessible.</td>
+          </tr>
+          <tr>
+            <td style="color:var(--warm-white);">Morning/Polish/Gentle Rituals</td>
+            <td class="td-price" style="color:var(--warm-white);">€29</td>
+            <td class="td-note" style="color:var(--warm-white);">Quarterly subscription default. Set of 4: €89.</td>
+          </tr>
+          <tr>
+            <td style="color:var(--warm-white);">The Evening Ritual</td>
+            <td class="td-price" style="color:var(--plum-light);">€39</td>
+            <td class="td-note" style="color:var(--warm-white);">Premium silicone. Higher margin. Strong repeat purchase.</td>
+          </tr>
+          <tr>
+            <td style="color:var(--warm-white);">TWICE App</td>
+            <td class="td-price" style="color:var(--warm-white);">€4.99<span style="font-size:13px; font-family:'Inter'; opacity:.5;">/mo</span></td>
+            <td class="td-note" style="color:var(--warm-white);">Guided timers, wellness modes, achievement badges. <em>We are not elaborating.</em></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="anim stat-row mt-40" style="gap:48px;">
+      <div>
+        <div class="stat-num text-light">75%</div>
+        <div class="stat-label" style="color:var(--warm-white);">Gross Margin</div>
+      </div>
+      <div>
+        <div class="stat-num text-light">€890</div>
+        <div class="stat-label" style="color:var(--warm-white);">36-month LTV</div>
+      </div>
+      <div>
+        <div class="stat-num text-light">€43</div>
+        <div class="stat-label" style="color:var(--warm-white);">CAC Target</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 8 — GO-TO-MARKET
+════════════════════════════════════ -->
+<div class="slide bg-cream" data-nav="light">
+  <div class="max-960">
+    <div class="anim mb-16 text-center">
+      <span class="eyebrow eyebrow-dark">Go-to-Market</span>
+    </div>
+    <div class="anim mb-44 text-center" style="margin-bottom:44px;">
+      <h2 class="text-dark" style="font-weight:300;">Three phases.<br>One inevitable destination.</h2>
+    </div>
+    <div class="grid-3 anim" style="gap:20px; align-items:start;">
+      <div class="card card-outline-light">
+        <span class="card-label text-dark">Phase 1 · 2026</span>
+        <div class="card-title text-dark" style="font-size:20px; margin-bottom:12px;">DTC Only</div>
+        <p class="card-body text-mid">Nordic + UK. twice.com. Meta targeting: wellness, self-care, personal care.<br><em>The algorithm will figure it out.</em></p>
+      </div>
+      <div class="card card-outline-light">
+        <span class="card-label text-dark">Phase 2 · 2027</span>
+        <div class="card-title text-dark" style="font-size:20px; margin-bottom:12px;">Influencer + PR</div>
+        <p class="card-body text-mid">40% growth from organic referral. Reason: <em>this product is extremely shareable. Especially on girls' trips.</em></p>
+      </div>
+      <div class="card card-plum">
+        <span class="card-label text-plum">Phase 3 · 2028</span>
+        <div class="card-title text-plum" style="font-size:20px; margin-bottom:12px;">Retail</div>
+        <p class="card-body" style="color:var(--text-mid);">Sephora. Net-a-Porter. Positioned alongside jade rollers and facial tools.<br><em>Nobody asks questions.</em></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 9 — TRACTION
+════════════════════════════════════ -->
+<div class="slide bg-dark" data-nav="dark">
+  <div class="max-860">
+    <div class="anim mb-16">
+      <span class="eyebrow eyebrow-light">Traction</span>
+    </div>
+    <div class="anim mb-48">
+      <h2 class="text-light" style="font-weight:300;">The market came to us.</h2>
+    </div>
+    <div class="anim stat-row mb-48">
+      <div>
+        <div class="stat-num text-light">12,400</div>
+        <div class="stat-label" style="color:var(--warm-white);">Waitlist signups.<br>Zero paid acquisition.</div>
+      </div>
+      <div>
+        <div class="stat-num text-light">847K</div>
+        <div class="stat-label" style="color:var(--warm-white);">Impressions.<br>One concept tweet.</div>
+      </div>
+      <div>
+        <div class="stat-num text-light">94%</div>
+        <div class="stat-label" style="color:var(--warm-white);">Positive sentiment.<br>(6% tagged their dentist.)</div>
+      </div>
+    </div>
+    <ul class="bullet-list anim" style="border-top: 1px solid rgba(255,255,255,.07);">
+      <li>
+        <span class="bullet-num">→</span>
+        <span class="bullet-text">3 dental professionals agreed to "review" the product. <em>(They were enthusiastic.)</em></span>
+      </li>
+      <li>
+        <span class="bullet-num">→</span>
+        <span class="bullet-text">Press coverage: Refinery29, Well+Good, and one very confused article in Wired.</span>
+      </li>
+      <li>
+        <span class="bullet-num">→</span>
+        <span class="bullet-text">Dame now sells at Target. Smile Makers at Sephora. The mainstream has arrived. We're next.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 10 — THE ASK
+════════════════════════════════════ -->
+<div class="slide bg-plum" data-nav="dark">
+  <div class="max-960">
+    <div class="anim mb-16 text-center">
+      <span class="eyebrow" style="color:rgba(253,252,251,.5);">The Ask</span>
+    </div>
+    <div class="anim mb-44 text-center" style="margin-bottom:44px;">
+      <h2 class="text-light" style="font-weight:300;">Raising €2.5M Seed</h2>
+    </div>
+    <div class="grid-4 anim" style="gap:16px;">
+      <div class="card card-plum-inv text-center">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:42px; color:var(--warm-white); font-weight:300; line-height:1;">40%</div>
+        <div style="font-family:'Inter',sans-serif; font-size:11px; color:var(--warm-white); opacity:.5; margin:8px 0;">€1,000,000</div>
+        <div style="font-family:'Inter',sans-serif; font-size:12px; color:var(--warm-white); opacity:.7;">Product &<br>Tooling</div>
+      </div>
+      <div class="card card-plum-inv text-center">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:42px; color:var(--warm-white); font-weight:300; line-height:1;">30%</div>
+        <div style="font-family:'Inter',sans-serif; font-size:11px; color:var(--warm-white); opacity:.5; margin:8px 0;">€750,000</div>
+        <div style="font-family:'Inter',sans-serif; font-size:12px; color:var(--warm-white); opacity:.7;">First<br>Production Run</div>
+      </div>
+      <div class="card card-plum-inv text-center">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:42px; color:var(--warm-white); font-weight:300; line-height:1;">20%</div>
+        <div style="font-family:'Inter',sans-serif; font-size:11px; color:var(--warm-white); opacity:.5; margin:8px 0;">€500,000</div>
+        <div style="font-family:'Inter',sans-serif; font-size:12px; color:var(--warm-white); opacity:.7;">Marketing &<br>Acquisition</div>
+      </div>
+      <div class="card card-plum-inv text-center">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:42px; color:var(--warm-white); font-weight:300; line-height:1;">10%</div>
+        <div style="font-family:'Inter',sans-serif; font-size:11px; color:var(--warm-white); opacity:.5; margin:8px 0;">€250,000</div>
+        <div style="font-family:'Inter',sans-serif; font-size:12px; color:var(--warm-white); opacity:.7;">Operations<br>& Team</div>
+      </div>
+    </div>
+    <div class="anim mt-40 text-center">
+      <div style="width:32px; height:1px; background:rgba(253,252,251,.2); margin: 0 auto 28px;"></div>
+      <p class="italic-close text-light" style="font-size:clamp(16px,2vw,24px); opacity:.9; max-width:640px; margin:0 auto;">
+        "We are asking you to fund the future of oral care.<br><strong style="font-weight:500;">Among other things.</strong>"
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 11 — TEAM
+════════════════════════════════════ -->
+<div class="slide bg-dark-s" data-nav="dark">
+  <div class="max-960">
+    <div class="anim mb-16">
+      <span class="eyebrow eyebrow-light">The Team</span>
+    </div>
+    <div class="anim mb-44">
+      <h2 class="text-light" style="font-weight:300;">Built by people who know<br>exactly what they're doing.</h2>
+    </div>
+    <div class="grid-3 anim" style="gap:20px; align-items:start;">
+      <div class="card card-outline-dark">
+        <span class="card-label" style="color:var(--warm-white);">CEO & Co-founder</span>
+        <div class="card-title text-light" style="font-size:22px; margin-bottom:10px;">Christina W.</div>
+        <p class="card-body" style="color:var(--warm-white);">Head of Corporate Partnerships, Startuplab. A decade building relationships between large organizations and products they didn't know they needed yet.</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:var(--gold); opacity:.8; margin-top:12px;">"She has spent her career in premium experiences."</p>
+      </div>
+      <div class="card card-outline-dark">
+        <span class="card-label" style="color:var(--warm-white);">CTO & Co-founder</span>
+        <div class="card-title text-light" style="font-size:22px; margin-bottom:10px;">[Name]</div>
+        <p class="card-body" style="color:var(--warm-white);">Previously Philips Sonicare, Lead Engineer. 3 patents in sonic oscillation technology. Joined after asking the same question we did.</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:var(--gold); opacity:.8; margin-top:12px;">"She knows exactly how many RPMs matter."</p>
+      </div>
+      <div class="card card-plum">
+        <span class="card-label text-plum">Advisors</span>
+        <div class="card-title" style="font-size:18px; color:var(--plum-light); margin-bottom:12px;">Expert Panel</div>
+        <p class="card-body text-mid">
+          Dr. [Name], DDS<br>
+          <em style="opacity:.6;">NYU Dental School<br>(our dental credibility)</em><br><br>
+          Dr. [Name], OB-GYN<br>
+          <em style="opacity:.6;">Rikshospitalet, Oslo<br>(our other credibility)</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 12 — TARGET AUDIENCE (THE PERSONAL ONE)
+════════════════════════════════════ -->
+<div class="slide bg-cream" data-nav="light">
+  <div class="max-1000">
+    <div class="anim mb-8 text-center">
+      <span class="eyebrow eyebrow-dark">Markedsundersøkelse &nbsp;·&nbsp; Target Audience</span>
+    </div>
+    <div class="anim mb-8 text-center">
+      <h2 class="text-dark" style="font-weight:300;">We know our customer.</h2>
+    </div>
+    <div class="anim mb-36 text-center" style="margin-bottom:32px;">
+      <p class="italic-close text-mid" style="font-size:14px; opacity:.6;">Primary research conducted among a highly curated focus group of four.</p>
+    </div>
+    <div class="grid-3 anim" style="gap:20px; align-items:start;">
+
+      <!-- UNN MARI -->
+      <div class="persona-card">
+        <div class="persona-role">The Adventurer</div>
+        <div class="persona-name">Unn Mari</div>
+        <div class="persona-quote">"Packs light. Compromises on nothing."</div>
+        <p class="persona-detail">Goes on ski tours and mountain hikes. Sleeps in a tent. Her toiletry bag is small. Her standards are not.</p>
+        <div class="persona-divider"></div>
+        <p class="persona-angle">
+          <strong>Liten nok til sekken. Kraftig nok til alt annet.</strong><br>
+          IPX7 waterproof. 94g. Goes where she goes. Does exactly what it does.
+        </p>
+      </div>
+
+      <!-- GUNN -->
+      <div class="persona-card">
+        <div class="persona-role">The Athlete</div>
+        <div class="persona-name">Gunn <span class="badge">Triple Use</span></div>
+        <div class="persona-quote">"Training for her third half marathon. Currently managing a hip issue."</div>
+        <p class="persona-detail">Needs a device that works as hard as she does — for oral care, muscle recovery, and everything in between.</p>
+        <div class="persona-divider"></div>
+        <p class="persona-angle">
+          <strong>Morning Ritual. Evening Ritual. The Hip Ritual.</strong><br>
+          For the long runs. And everything after.
+        </p>
+      </div>
+
+      <!-- TITTI -->
+      <div class="persona-card">
+        <div class="persona-role">The Artist</div>
+        <div class="persona-name">Titti</div>
+        <div class="persona-quote">"Sings in a choir. Her mouth is her instrument."</div>
+        <p class="persona-detail">Takes her oral health seriously — her voice depends on it. Takes the rest of her rituals equally seriously.</p>
+        <div class="persona-divider"></div>
+        <p class="persona-angle">
+          <strong>Vibrato — not just for the stage.</strong><br>
+          The Morning Ritual for the performance. The Evening Ritual for the encore.
+        </p>
+      </div>
+
+    </div>
+    <div class="anim mt-24 text-center">
+      <p class="footnote text-mid">Focus group conducted in a private setting. Results were enthusiastic and unanimous. Full report available upon request.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 13 — THE COMMERCIAL
+════════════════════════════════════ -->
+<div class="slide bg-dark" data-nav="dark">
+  <div class="max-800" style="max-width:800px; width:100%;">
+    <div class="anim mb-16">
+      <span class="eyebrow eyebrow-light">Campaign &nbsp;·&nbsp; "The Ritual"</span>
+    </div>
+    <div class="anim mb-40">
+      <h2 class="text-light" style="font-weight:300; max-width:560px;">60 seconds. Zero explicit content.<br>Total clarity.</h2>
+    </div>
+    <div class="script-card anim">
+      <span class="script-label">15-Second Cut &nbsp;·&nbsp; Instagram / TikTok</span>
+      <div class="script-text">
+        <em>Cold open. The TWICE device on a marble shelf. Two heads beside it.</em><br><br>
+        <span class="script-super">SUPER: "Morning."</span><br>
+        <em>She attaches the first head. Click. Eyes close.</em><br><br>
+        <span class="script-super">SUPER: "Evening."</span><br>
+        <em>The second head. Her hand wraps the handle. An exhale.</em><br><br>
+        <span class="script-super">SUPER: "Same device."</span><br><br>
+        <em>One beat of silence.</em><br><br>
+        <span class="script-super" style="font-size:18px; letter-spacing:2px;">SUPER: "Different head."</span><br><br>
+        <em>Low piano note. TWICE wordmark. White on black. Cut.</em>
+      </div>
+    </div>
+    <p class="footnote anim" style="color:var(--warm-white);">Broadcast-safe. Platform-compliant for Instagram, YouTube, and linear television in all major markets. Zero restricted language.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SLIDE 14 — THE PITCH (THE FINALE)
+════════════════════════════════════ -->
+<div class="slide bg-plum" data-nav="dark">
+  <div class="max-860">
+    <div class="anim mb-8 text-center">
+      <span class="eyebrow" style="color:rgba(253,252,251,.45);">Investor Relations &nbsp;·&nbsp; Private Briefing</span>
+    </div>
+    <div class="anim mb-6 text-center">
+      <h2 class="italic text-light" style="font-weight:300;">Christina presents TWICE<br>to the board.</h2>
+    </div>
+    <div class="anim mb-28 text-center" style="margin-bottom:28px;">
+      <p style="font-family:'Inter',sans-serif; font-size:11px; letter-spacing:2px; color:rgba(253,252,251,.4);">Unn Mari &nbsp;&mdash;&nbsp; Gunn &nbsp;&mdash;&nbsp; Titti &nbsp;&mdash;&nbsp; A girls&#39; trip. Somewhere good.</p>
+    </div>
+    <div class="script-card anim" style="background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.12);">
+      <span class="script-label">Transcript &nbsp;·&nbsp; Confidential</span>
+      <div class="script-text" style="font-size:13px; line-height:1.9;">
+        <em>Wine has been poured. Christina stands up.</em><br><br>
+        <strong style="font-weight:500; opacity:1;">"Okay. I've been working on something. I want to run it by you three."</strong>
+        <em> She puts her phone face-down.</em><br><br>
+        "It's a product company. Premium positioning. Norwegian brand. A personal care device with interchangeable heads."<br><br>
+        <em>She looks at Unn Mari.</em> "You know how much you spend on your skincare ritual. This is that level of commitment, but for... <em>a different part of the ritual.</em>" <em>Unn Mari nods. She doesn't know yet.</em><br><br>
+        "Gunn — you need more quality. Less compromise. And your hip will genuinely thank you." <em>Gunn tilts her head. Getting warmer.</em><br><br>
+        "Titti — you use your mouth professionally. This is just expanding the scope."<br><br>
+        "The morning head is for oral care. Very good. Very precise."<br><br>
+        <em>Beat.</em><br><br>
+        <strong style="font-weight:500; opacity:1;">"The evening head is..."</strong> <em>She picks up the device from the table.</em> <strong style="font-weight:500; opacity:1;">"...for relaxation."</strong><br><br>
+        <em>She holds it out. She is not smiling.</em><br><br>
+        <em>Titti gets it first. Then Gunn. Then Unn Mari.</em><br><br>
+        <em>The sounds they make: a sharp inhale, a wheeze, and the specific Norwegian noise that means "absolutely not" and "give me that" at the same time.</em><br><br>
+        <strong style="font-weight:500; opacity:1;">"I've already ordered four."</strong> <em>She sits down, pours wine.</em><br>
+        <strong style="font-weight:500; opacity:1;">"I'll expense them as team wellness."</strong>
+      </div>
+    </div>
+    <div class="anim mt-20 text-center">
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:rgba(253,252,251,.4);">They will talk about this for years. Christina knows this. That's why she did it.</p>
+    </div>
+    <div class="anim text-center mt-16">
+      <span style="font-family:'Cormorant Garamond',serif; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:rgba(253,252,251,.2);">TWICE &nbsp;·&nbsp; Two minutes. Twice daily. Finally worth it.</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<script>
+const slides   = Array.from(document.querySelectorAll('.slide'));
+const total    = slides.length;
+let   current  = 0;
+let   animating = false;
+
+const navEl       = document.getElementById('nav');
+const arrowEl     = document.getElementById('arrows');
+const counterEl   = document.getElementById('navCounter');
+const progressEl  = document.getElementById('progressBar');
+
+function setTheme(idx) {
+  const dark = slides[idx].dataset.nav === 'dark';
+  navEl.className    = 'nav '    + (dark ? 'dark-nav' : 'light-nav');
+  arrowEl.className  = 'arrows ' + (dark ? 'dark-arr' : 'light-arr');
+}
+
+function goto(idx) {
+  if (animating || idx < 0 || idx >= total || idx === current) return;
+  animating = true;
+
+  slides[current].classList.add('exit');
+  slides[current].classList.remove('active');
+  setTimeout(() => slides[current].classList.remove('exit'), 700);
+
+  current = idx;
+  slides[current].classList.add('active');
+
+  counterEl.textContent = String(current + 1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+  progressEl.style.width = ((current + 1) / total * 100) + '%';
+  setTheme(current);
+
+  setTimeout(() => { animating = false; }, 700);
+}
+
+function next() { goto(current + 1); }
+function prev() { goto(current - 1); }
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); prev(); }
+});
+
+// Click (not on arrows)
+document.getElementById('deck').addEventListener('click', e => {
+  if (!e.target.closest('.arrows')) next();
+});
+
+// Touch swipe
+let tx = 0;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchend',   e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+}, { passive: true });
+
+// Init
+setTheme(0);
+</script>
+</body>
+</html>
